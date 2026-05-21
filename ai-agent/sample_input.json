@@ -1,0 +1,14 @@
+{
+  "lead_id": 1738,
+  "first_name": "Jan",
+  "company": "Omni Network",
+  "job_title": "Sales Development Director",
+  "industry": "E-commerce",
+  "persona": "Sales Manager",
+  "lifecycle_stage": "MQL",
+  "calculated_engagement_score": 33,
+  "trigger_type": "inactive_reengagement",
+  "trigger_reason": "Lead has been inactive for more than 14 days after previous outreach.",
+  "recommended_action": "re_engagement",
+  "priority": "low"
+}
