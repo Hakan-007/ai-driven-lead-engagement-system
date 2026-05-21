@@ -1,6 +1,3 @@
-# ai-driven-lead-engagement-system
-
-
 # AI-Driven Lead Engagement & Outreach System
 
 ## Overview
