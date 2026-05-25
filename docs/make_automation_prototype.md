@@ -14,7 +14,7 @@ Google Sheets trigger input
 → HubSpot CRM action
 → Google Sheets automation log
 
-Input
+## Input
 
 The workflow starts from a structured trigger input containing:
 
