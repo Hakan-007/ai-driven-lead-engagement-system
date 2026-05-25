@@ -1,190 +1,196 @@
-# AI-Driven Lead Engagement & Outreach System
+# AI-Driven Lead Engagement & CRM Automation Prototype
 
-## Overview
-
-This project demonstrates an AI-driven Marketing Operations system for a B2B SaaS company.
-
-The system combines CRM lead data, behavioral activity logs, outreach history, SQL-based trigger logic, and AI-generated outreach messages to recommend the next best action for each lead.
-
-The goal of this project is to show how CRM, data analysis, automation logic, and AI can work together in a practical Marketing Operations / Growth workflow.
+A Marketing Operations / MarTech portfolio project demonstrating how CRM data, SQL intelligence, AI-assisted outreach, and workflow automation can be combined into a scalable lead engagement system.
 
 ---
 
 ## Business Problem
 
-B2B SaaS companies often collect leads from multiple sources, but outreach is frequently manual, inconsistent, and disconnected from actual lead behavior.
+B2B sales and marketing teams often face a fragmented workflow:
 
-Common challenges include:
+- CRM data sits in HubSpot
+- engagement/activity data is difficult to operationalize
+- lead prioritization is manual
+- follow-up actions are inconsistent
+- AI outreach experiments remain disconnected from CRM workflows
 
-- Sales teams do not always know which leads to prioritize.
-- Outreach is often generic or based on intuition.
-- High-intent signals such as demo requests or content engagement may not trigger timely follow-up.
-- Inactive leads are rarely handled systematically.
-- Marketing and sales teams may not work from the same lead intelligence layer.
+As a result, valuable leads may be missed, follow-up timing becomes inconsistent, and marketing/sales teams spend time manually reviewing signals instead of acting on them.
 
 ---
 
 ## Solution
 
-I designed a behavior-triggered lead engagement system that combines:
+This project simulates an end-to-end Marketing Operations workflow that connects:
 
-- CRM lead data
-- Behavioral activity data
-- Outreach history
-- SQL-based intelligence layers
-- AI-generated outreach recommendations
+- CRM segmentation (HubSpot)
+- SQL intelligence layer (BigQuery)
+- behavioral trigger logic
+- AI-assisted outreach prototyping (Antigravity)
+- workflow automation (Make)
+- dashboard visualization (Looker Studio)
 
-The system identifies:
-
-- high-intent leads
-- highly engaged leads without outreach
-- warm leads needing follow-up
-- inactive leads requiring re-engagement
-
-The final trigger output can be used by an AI assistant to generate personalized multi-channel outreach messages.
+The objective is to reduce the manual gap between lead intelligence and CRM execution.
 
 ---
 
 ## Tech Stack
 
-| Layer | Tool / Skill |
-|---|---|
-| CRM | HubSpot |
-| Data Warehouse | Google BigQuery |
-| Data Modeling | SQL |
-| AI Prototype | Antigravity |
-| Automation Concept | Make |
-| Portfolio Documentation | GitHub + Notion |
+- HubSpot CRM
+- Google BigQuery
+- SQL
+- Looker Studio
+- Make
+- Google Sheets
+- Antigravity (AI agent prototyping)
 
 ---
 
-## Data Model
+## System Architecture
 
-The system uses three core datasets:
+See full architecture documentation:
 
-### 1. Leads
+[docs/architecture.md](docs/architecture.md)
 
-CRM master data including:
+---
 
-- lead profile
-- company
-- job title
-- industry
-- country
-- persona
-- target tier
-- lifecycle stage
-- lead score
+## CRM Operational Layer (HubSpot)
 
-### 2. Activities
+Implemented CRM segmentation logic including:
 
-Behavioral event data including:
+- High Intent Leads
+- Re-engagement Leads
+- Tier 1 SaaS ICP Leads
 
-- email opens
-- link clicks
-- page visits
-- demo requests
-- webinar attendance
+These segments demonstrate how CRM properties can be operationalized into lead prioritization workflows.
 
-### 3. Outreach Log
+### CRM Example
 
-Previous outreach history including:
-
-- message type
-- message theme
-- sent date
-- response status
+![HubSpot CRM Segment](screenshots/hubspot_high_intent_segment.png)
 
 ---
 
 ## SQL Intelligence Layer
 
-I created SQL views in BigQuery to transform raw CRM and behavioral data into a decision-making layer.
+SQL workflows include:
 
-### SQL Views
+- lead activity aggregation
+- outreach status modeling
+- unified lead intelligence view
+- trigger generation logic
 
-- `lead_activity_summary`
-- `lead_outreach_status`
-- `unified_lead_view`
-- `trigger_generation_view`
+SQL files:
 
-### Purpose
+- [01 Lead Activity Summary](sql/01_lead_activity_summary.sql)
+- [02 Lead Outreach Status](sql/02_lead_outreach_status.sql)
+- [03 Unified Lead View](sql/03_unified_lead_view.sql)
+- [04 Trigger Generation View](sql/04_trigger_generation_view.sql)
 
-These views help convert raw lead and activity data into:
+Example trigger logic:
 
-- engagement metrics
-- high-intent signals
-- outreach status
-- recommended next actions
-
----
-
-## Trigger Logic
-
-The trigger engine uses four main rules:
-
-### 1. Demo Request → Demo Offer
-
-If a lead requested a demo and has not yet received outreach, the system recommends a demo offer.
-
-### 2. High Engagement, No Outreach → Intro
-
-If a lead has a high calculated engagement score but no outreach history, the system recommends an intro message.
-
-### 3. Warm Follow-Up
-
-If a lead received an intro message and continued engaging without replying, the system recommends a follow-up.
-
-### 4. Inactive Re-engagement
-
-If a lead has been inactive for more than 14 days after previous outreach, the system recommends a low-priority re-engagement message.
+- demo request → demo offer
+- high engagement + no outreach → intro
+- warm activity → follow-up
+- inactivity → re-engagement
 
 ---
 
-## AI Outreach Assistant
+## Dashboard & Visualization
 
-To demonstrate how the trigger engine could be operationalized, I prototyped an AI outreach assistant using Antigravity.
+A Looker Studio dashboard was created to visualize:
 
-The assistant takes trigger output from BigQuery and generates:
+- lifecycle stage distribution
+- lead source distribution
+- engagement by persona
+- trigger recommendation distribution
 
-- email subject line
-- personalized email body
-- LinkedIn message
-- internal sales note
+### Dashboard Preview
+
+![Dashboard](screenshots/looker_dashboard.png)
 
 ---
 
-## Example Use Case
+## AI Outreach Assistant Prototype
 
-A lead becomes inactive for more than 14 days after previous outreach.
+AI outreach logic was first prototyped in Antigravity.
 
-The SQL trigger engine identifies this as an inactive re-engagement case and recommends a low-priority re-engagement action.
+The assistant generates:
 
-The AI assistant then generates a personalized, low-pressure outreach message tailored to the lead’s role, company, industry, and trigger reason.
+- email drafts
+- LinkedIn outreach messages
+- internal sales notes
+
+Files:
+
+- [AI Prompt](ai-agent/outreach_prompt.md)
+- [Sample Output](ai-agent/sample_output.md)
+
+---
+
+## Workflow Automation Prototype (Make)
+
+A Make automation prototype demonstrates how trigger outputs can move into CRM execution.
+
+Workflow:
+
+Google Sheets trigger input  
+→ Make router  
+→ HubSpot CRM action  
+→ automation log
+
+Supported routes:
+
+- demo_offer
+- re_engagement
+- follow_up
+- intro
+
+This demonstrates operational workflow orchestration for Marketing Operations teams.
+
+### Automation Preview
+
+![Make Workflow](screenshots/make_scenario_overview.png)
+
+---
+
+## Business Value
+
+This prototype demonstrates how teams can:
+
+- reduce manual lead review
+- standardize CRM follow-up workflows
+- operationalize SQL insights
+- connect AI experimentation to CRM execution
+- improve marketing/sales process consistency
 
 ---
 
 ## Skills Demonstrated
 
-This project demonstrates practical skills in:
+### Marketing Operations
 
-- CRM data modeling
-- SQL joins and aggregation
-- behavioral segmentation
-- trigger-based marketing logic
+- CRM workflow design
+- lifecycle management
 - lead prioritization
+- operational automation
+
+### MarTech
+
+- system orchestration
+- HubSpot CRM operations
+- workflow automation
+- dashboard reporting
+
+### Data / Analytics
+
+- SQL modeling
+- behavioral trigger logic
+- data aggregation
+- KPI visualization
+
+### AI / Automation
+
 - AI prompt design
-- AI-assisted outreach personalization
-- Marketing Operations system thinking
+- AI-assisted workflow prototyping
+- automation routing logic
 
 ---
-
-## Business Impact
-
-This type of system could help a B2B SaaS company:
-
-- prioritize high-intent leads
-- reduce manual follow-up work
-- avoid generic outreach
-- improve sales and marketing alignment
-- create more consistent lead engagement workflows
