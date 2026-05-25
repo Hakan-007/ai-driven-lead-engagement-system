@@ -36,7 +36,7 @@ Routing Logic
 
 The scenario routes leads based on recommended_action.
 
-Examples:
+## Examples
 
 re_engagement → create contextual HubSpot note
 demo_offer → create HubSpot follow-up task
